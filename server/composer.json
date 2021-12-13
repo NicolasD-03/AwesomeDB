@@ -1,0 +1,15 @@
+{
+  "require": {
+    "altorouter/altorouter": "^2.0",
+    "vlucas/phpdotenv": "^5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Api\\Controller\\": "api/controller/",
+      "Utils\\": "utils/"
+    }
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^6.0"
+  }
+}

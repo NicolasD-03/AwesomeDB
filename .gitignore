@@ -1,0 +1,3 @@
+server/vendor/
+server/.env.local
+.vscode
