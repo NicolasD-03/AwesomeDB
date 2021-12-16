@@ -4,9 +4,13 @@ namespace Api\Controller;
 
 class FilmController
 {
-    public function __construct($test)
+    /**
+     * Create film controller
+     * @param $db The database to do requests
+     */
+    public function __construct($db)
     {
-        $this->test = $test;
+        $this->_db = $db;
     }
 
     /** 
@@ -15,6 +19,10 @@ class FilmController
 
     public function getFilms()
     {
-        return $this->test;
+        if (isset($_GET['q'])) {
+            $query = htmlspecialchars($_GET['q']);
+            $result = $this->_db->request("SELECT * FROM table_films WHERE Titre_Original LIKE '{$query}%' LIMIT 20");
+            echo json_encode($result);
+        }
     }
 }
