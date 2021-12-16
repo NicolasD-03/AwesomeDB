@@ -41,6 +41,15 @@ class Database
     }
 
     /**
+     * Close database connection
+     */
+
+    public function close()
+    {
+        $this->_db = null;
+    }
+
+    /**
      * Request to database
      * 
      * @param string $sql The request with :MarksName ex "SELECT * FROM ... WHERE id = :id"
