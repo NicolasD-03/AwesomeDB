@@ -1,5 +1,6 @@
 <?php
 
+use Api\Controller\ExempleController;
 use Api\Controller\FilmController;
 use Utils\Database;
 
@@ -9,6 +10,7 @@ require 'utils/config.php';
 
 // Set requests return to json only
 header('content-type: application/json');
+header('Access-Control-Allow-Origin: *');
 
 // Verify db connection
 try {
@@ -20,11 +22,22 @@ try {
 
 $router = new AltoRouter();
 $GLOBALS['filmController'] = new FilmController($db);
+$GLOBALS['exempleController'] = new ExempleController($db);
 
 $baseRoute = $apiRoute . $apiVersion;
 
 $router->map('GET', $baseRoute . '/films', function () {
     $GLOBALS['filmController']->getFilms();
+});
+
+$router->map('GET', $baseRoute . '/exemple/[:id]', function ($id) {
+    switch ($id) {
+        case 1:
+            $GLOBALS['exempleController']->exemple1();
+            break;
+        default:
+            break;
+    }
 });
 
 $match = $router->match();
