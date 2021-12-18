@@ -35,6 +35,12 @@ $router->map('GET', $baseRoute . '/exemple/[:id]', function ($id) {
         case 1:
             $GLOBALS['exempleController']->exemple1();
             break;
+        case 2:
+            $GLOBALS['exempleController']->exemple2();
+            break;
+        case 3:
+            $GLOBALS['exempleController']->exemple3();
+            break;
         default:
             break;
     }
