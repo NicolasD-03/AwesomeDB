@@ -13,7 +13,7 @@ class ExempleController
     public function exemple1()
     {
         $req1 = $this->_db->request("SELECT Titre_Original FROM table_films WHERE Titre_Original LIKE 'The%' LIMIT 10");
-        $req2 = $this->_db->request("SELECT Titre_Original FROM table_distributions WHERE Distribution LIKE 'Bruce%' GROUP BY Distribution LIMIT 10");
+        $req2 = $this->_db->request("SELECT Distribution FROM table_distributions WHERE Distribution LIKE 'Bruce%' GROUP BY Distribution LIMIT 10");
         $req3 = $this->_db->request("SELECT Titre_Original, Langue_Originale FROM table_films WHERE Genres LIKE '%Action%' AND Langue_Originale != 'en' LIMIT 10");
         $req4 = $this->_db->request("SELECT Titre_Original, Genres FROM table_films WHERE Durée <= 0");
 
