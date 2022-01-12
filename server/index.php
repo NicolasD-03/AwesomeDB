@@ -41,6 +41,9 @@ $router->map('GET', $baseRoute . '/exemple/[:id]', function ($id) {
         case 3:
             $GLOBALS['exempleController']->exemple3();
             break;
+        case 4:
+            $GLOBALS['exempleController']->exemple4();
+            break;
         default:
             header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found", true, 404);
             break;
