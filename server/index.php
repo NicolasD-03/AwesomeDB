@@ -26,10 +26,6 @@ $GLOBALS['exempleController'] = new ExempleController($db);
 
 $baseRoute = $apiRoute . $apiVersion;
 
-$router->map('GET', $baseRoute . '/films', function () {
-    $GLOBALS['filmController']->getFilms();
-});
-
 $router->map('GET', $baseRoute . '/exemple/[:id]', function ($id) {
     switch ($id) {
         case 1:
