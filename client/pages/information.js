@@ -1,9 +1,9 @@
 import Head from "next/head";
-export default function Home() {
+export default function Informations() {
   return (
     <>
       <Head>
-        <title>Accueil</title>
+        <title>Informations</title>
       </Head>
     </>
   );

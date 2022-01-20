@@ -21,7 +21,6 @@ try {
 }
 
 $router = new AltoRouter();
-$GLOBALS['filmController'] = new FilmController($db);
 $GLOBALS['exempleController'] = new ExempleController($db);
 
 $baseRoute = $apiRoute . $apiVersion;

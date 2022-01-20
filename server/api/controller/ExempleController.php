@@ -22,10 +22,10 @@ class ExempleController
 
     public function exemple2()
     {
-        $req1 = $this->_db->request("SELECT DISTINCT count(Réalisateur) as nb_real FROM table_realisateurs LIMIT 10");
+        $req1 = $this->_db->request("SELECT DISTINCT count(Réalisateur) as nb_real FROM table_realisateurs");
         $req2 = $this->_db->request("SELECT Titre_Original FROM table_films WHERE Langue_Originale = 'ja' AND Durée > 0 ORDER BY Durée LIMIT 10");
         $req3 = $this->_db->request("SELECT Titre_Original FROM table_films ORDER BY Année_Production LIMIT 10");
-        $req4 = $this->_db->request("SELECT avg(Revenus_Générés) as avg_income FROM table_films WHERE Genres = 'Thriller' AND Revenus_Générés > 0 LIMIT 10");
+        $req4 = $this->_db->request("SELECT avg(Revenus_Générés) as avg_income FROM table_films WHERE Genres = 'Thriller' AND Revenus_Générés > 0");
         $req5 = $this->_db->request("SELECT Titre_Original FROM table_films WHERE Genres = 'Horror' AND Revenus_Générés > (SELECT avg(Revenus_Générés) FROM table_films WHERE Revenus_Générés > 0) LIMIT 10");
 
 
