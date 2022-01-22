@@ -7,7 +7,11 @@ const Control = styled.div`
   width: max-content;
   padding: 1rem;
   border-radius: 1rem;
-  margin: 0 1rem; ;
+  margin: 0 1rem;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
 `;
 
 export function Next({ nextPage }) {

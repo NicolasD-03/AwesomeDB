@@ -95,7 +95,7 @@ export default function Exemple2({ data }) {
         />
         <p>Résultat : </p>
         <DataShow>
-          <p>Revenus généré : {data.req4[0].avg_income}</p>
+          <p>Revenus généré : {data.req4[0].avg_income}$</p>
         </DataShow>
       </ContentDisplay>
 
@@ -116,8 +116,6 @@ export default function Exemple2({ data }) {
           </ul>
         </DataShow>
       </ContentDisplay>
-
-      <hr />
 
       <Control>
         <Previous previousPage="/exemple" />

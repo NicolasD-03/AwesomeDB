@@ -3,6 +3,8 @@ import styled from "styled-components";
 const Container = styled.div`
   width: max-content;
   max-width: 1000px;
+  height: max-content;
+  max-height: 800px;
   margin: 0 auto;
   margin-top: 40px;
 `;

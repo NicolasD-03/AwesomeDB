@@ -105,8 +105,6 @@ export default function Exemple3({ data }) {
         </DataShow>
       </ContentDisplay>
 
-      <hr />
-
       <Control>
         <Previous previousPage="/exemple/2" />
         <Next nextPage="/exemple/4" />

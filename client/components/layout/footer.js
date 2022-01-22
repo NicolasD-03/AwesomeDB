@@ -6,6 +6,9 @@ const FooterContent = styled.div`
   margin-top: auto;
   margin-bottom: 1rem;
   height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Link = styled.a`
