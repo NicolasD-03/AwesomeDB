@@ -1,7 +1,6 @@
 <?php
 
 use Api\Controller\ExempleController;
-use Api\Controller\FilmController;
 use Utils\Database;
 
 require 'vendor/autoload.php';

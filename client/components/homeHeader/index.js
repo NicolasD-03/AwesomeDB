@@ -24,13 +24,13 @@ export default function HomeHeader() {
     });
     typewriter
       .typeString("Bienvenue sur le meilleur site de la décenie")
-      .pauseFor(1000)
+      .pauseFor(1200)
       .deleteAll()
       .typeString("Un site accessible à tous le monde")
-      .pauseFor(1000)
+      .pauseFor(1200)
       .deleteAll()
       .typeString("Une <strong>API</strong> fiable et optismée")
-      .pauseFor(1000)
+      .pauseFor(1200)
       .start();
   }, []);
   return (

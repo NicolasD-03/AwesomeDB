@@ -1,132 +1,141 @@
 import Head from "next/head";
-import styled from "styled-components";
-import { Next, Previous } from "../../components/exempleControl";
-import Header from "../../components/exempleHeader";
-import CodeDiplay from "../../components/codeDisplay";
-
-const ContentDisplay = styled.div`
-  margin-top: 50px;
-  & > p {
-    text-align: center;
-  }
-`;
-
-const DataShow = styled.div`
-  width: max-content;
-  margin: 0 auto;
-  margin-top: 40px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Control = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 5rem auto;
-`;
+import { Next, Previous, Container } from "../../components/exempleControl";
+import ExempleHeader from "../../components/exempleHeader";
+import HeaderContent from "../../components/exempleHeader/headerContent";
+import {
+  ExempleContainer,
+  Title,
+  Code,
+  ResultList,
+  ResultTitle,
+  ResultContent,
+} from "../../components/exempleContent/exempleContent";
 
 export default function Exemple2({ data }) {
   return (
     <>
       <Head>
-        <title>Exemples 2</title>
+        <title>Exemple 2</title>
       </Head>
-      <Header
-        title="Exemple 2"
-        text="Cette exemple est là pour vous montrez des requêtes avec conditions et avec des opérations !"
-      />
-      <ContentDisplay>
-        <CodeDiplay
-          code="SELECT DISTINCT count(Réalisateur) as nb_real FROM table_realisateurs"
-          req="1"
-        />
-        <p>Résultat : </p>
-        <DataShow>
-          <p>Nombre de Réalisateur : {data.req1[0].nb_real}</p>
-        </DataShow>
-      </ContentDisplay>
+      <ExempleHeader>Exemple 2</ExempleHeader>
+      <HeaderContent>
+        Bienvenue sur l'exemple 2 <br /> <br /> Ici vous retrouverez des reqêtes
+        basiques mais avec des opérations comme des moyennes ou le nombre total
+        d'un résultat !
+      </HeaderContent>
 
-      <hr />
+      <ExempleContainer>
+        <Title>
+          Requete pour récupérer le nombre de Réalisateurs différents
+        </Title>
+        <p>Code :</p>
+        <Code>
+          SELECT DISTINCT count(Réalisateur) as nb_real FROM table_realisateurs
+        </Code>
+        <ResultList>
+          <ResultContent>
+            <ResultTitle>Resulat :</ResultTitle>
+            <p>Nombre de Réalisateurs : {data.req1[0].nb_real}</p>
+          </ResultContent>
+        </ResultList>
+      </ExempleContainer>
 
-      <ContentDisplay>
-        <CodeDiplay
-          code="SELECT Titre_Original FROM table_films WHERE Langue_Originale = 'ja' AND Durée > 0 ORDER BY Durée LIMIT 10"
-          req="2"
-        />
-        <p>Résultat : </p>
-        <DataShow>
-          <ul>
-            <p>Titre :</p>
-            {data.req2.map((item) => (
-              <li>{item.Titre_Original}</li>
-            ))}
-          </ul>
-        </DataShow>
-      </ContentDisplay>
+      <ExempleContainer>
+        <Title>
+          Requete pour récupérer les titres des films tournés en japonais dans
+          l'ordre croissant de leur durée
+        </Title>
+        <p>Code :</p>
+        <Code>
+          SELECT Titre_Original FROM table_films WHERE Langue_Originale = 'ja'
+          AND Durée &gt; 0 ORDER BY Durée LIMIT 10
+        </Code>
+        <ResultList>
+          <ResultContent>
+            <ResultTitle>Titres :</ResultTitle>
+            <ul>
+              {data.req2.map((item) => (
+                <li>{item.Titre_Original}</li>
+              ))}
+            </ul>
+          </ResultContent>
+        </ResultList>
+      </ExempleContainer>
 
-      <hr />
+      <ExempleContainer>
+        <Title>
+          Requete pour récupérer les titres des films les plus anciens
+        </Title>
+        <p>Code :</p>
+        <Code>
+          SELECT Titre_Original FROM table_films ORDER BY Année_Production LIMIT
+          10
+        </Code>
+        <ResultList>
+          <ResultContent>
+            <ResultTitle>Titres :</ResultTitle>
+            <ul>
+              {data.req3.map((item) => (
+                <li>{item.Titre_Original}</li>
+              ))}
+            </ul>
+          </ResultContent>
+        </ResultList>
+      </ExempleContainer>
 
-      <ContentDisplay>
-        <CodeDiplay
-          code="SELECT Titre_Original FROM table_films ORDER BY Année_Production LIMIT 10"
-          req="3"
-        />
-        <p>Résultat : </p>
-        <DataShow>
-          <ul>
-            <p>Titre :</p>
-            {data.req3.map((item) => (
-              <li>{item.Titre_Original}</li>
-            ))}
-          </ul>
-        </DataShow>
-      </ContentDisplay>
+      <ExempleContainer>
+        <Title>
+          Requete pour récupérer le revenu moyen des films de genre thriller
+        </Title>
+        <p>Code :</p>
+        <Code>
+          SELECT avg(Revenus_Générés) as avg_income FROM table_films WHERE
+          Genres = 'Thriller' AND Revenus_Générés &gt; 0
+        </Code>
+        <ResultList>
+          <ResultContent>
+            <ResultTitle>Resulat :</ResultTitle>
+            <p>
+              Revenus généré moyen (arrondi) :{" "}
+              {Math.round(data.req4[0].avg_income)} $
+            </p>
+          </ResultContent>
+        </ResultList>
+      </ExempleContainer>
 
-      <hr />
+      <ExempleContainer>
+        <Title>
+          Requete pour récupérer les titres des films d'horreur dont le revenu
+          est supérieur au revenu moyen des films de la base
+        </Title>
+        <p>Code :</p>
+        <Code>
+          SELECT Titre_Original FROM table_films WHERE Genres = 'Horror' AND
+          Revenus_Générés &gt; (SELECT avg(Revenus_Générés) FROM table_films
+          WHERE Revenus_Générés &gt; 0) LIMIT 10
+        </Code>
+        <ResultList>
+          <ResultContent>
+            <ResultTitle>Titres :</ResultTitle>
+            <ul>
+              {data.req5.map((item) => (
+                <li>{item.Titre_Original}</li>
+              ))}
+            </ul>
+          </ResultContent>
+        </ResultList>
+      </ExempleContainer>
 
-      <ContentDisplay>
-        <CodeDiplay
-          code="SELECT avg(Revenus_Générés) as avg_income FROM table_films WHERE Genres = 'Thriller' AND Revenus_Générés > 0"
-          req="4"
-        />
-        <p>Résultat : </p>
-        <DataShow>
-          <p>Revenus généré : {data.req4[0].avg_income}$</p>
-        </DataShow>
-      </ContentDisplay>
-
-      <hr />
-
-      <ContentDisplay>
-        <CodeDiplay
-          code="SELECT Titre_Original FROM table_films WHERE Genres = 'Horror' AND Revenus_Générés > (SELECT avg(Revenus_Générés) FROM table_films WHERE Revenus_Générés > 0) LIMIT 10"
-          req="5"
-        />
-        <p>Résultat : </p>
-        <DataShow>
-          <ul>
-            <p>Titre :</p>
-            {data.req5.map((item) => (
-              <li>{item.Titre_Original}</li>
-            ))}
-          </ul>
-        </DataShow>
-      </ContentDisplay>
-
-      <Control>
-        <Previous previousPage="/exemple" />
+      <Container>
+        <Previous previousPage="/exemple/1" />
         <Next nextPage="/exemple/3" />
-      </Control>
+      </Container>
     </>
   );
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://awesomedb.xyz/api/v1/exemple/2");
+  const res = await fetch(`${process.env.API_ADDRESS}/2`);
   const data = await res.json();
 
   return {

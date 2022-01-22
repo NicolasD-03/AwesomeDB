@@ -1,44 +1,27 @@
 import Head from "next/head";
-import styled from "styled-components";
+import { useState } from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { TailSpin } from "react-loader-spinner";
-import { Next, Previous } from "../../components/exempleControl";
-import { useState } from "react";
+import { Next, Previous, Container } from "../../components/exempleControl";
+import ExempleHeader from "../../components/exempleHeader";
+import HeaderContent from "../../components/exempleHeader/headerContent";
+import {
+  ExempleContainer,
+  Title,
+  Code,
+  ResultList,
+  ResultTitle,
+  ResultContent,
+} from "../../components/exempleContent/exempleContent";
+import styled from "styled-components";
 import * as palette from "/libs/Variables.js";
-import Header from "../../components/exempleHeader";
-import CodeDiplay from "../../components/codeDisplay";
-
-const ContentDisplay = styled.div`
-  margin-top: 50px;
-  & > p {
-    text-align: center;
-  }
-`;
-
-const DataShow = styled.div`
-  width: 1000px;
-  margin: 0 auto;
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Control = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 5rem auto;
-`;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 40px 0;
+  margin: 40px auto;
 `;
 
 const Submit = styled.input`
@@ -76,53 +59,80 @@ export default function Exemple2() {
   const [actor, setActor] = useState("");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (actor) {
       setData(null);
       setLoading(true);
-      const res = await fetch(
-        `http://awesomedb.xyz/api/v1/exemple/4?actor=${actor}`
-      );
+      const res = await fetch(`${process.env.API_ADDRESS}/4?actor=${actor}`);
+      if (!res.ok) {
+        setError("Désolé nous ne pouvons pas traiter votre requête");
+        setLoading(false);
+        return;
+      }
       setData(await res.json());
       setLoading(false);
     }
   };
+
   return (
     <>
       <Head>
-        <title>Exemples 4</title>
+        <title>Exemple 4</title>
       </Head>
-      <Header
-        title="Exemple 4"
-        text="Cette exemple est là pour vous montrez des requêtes grâce aux données de l'utilisateur !"
-      />
 
-      <DataShow>
-        <CodeDiplay
-          code="SELECT DISTINCT count(Id_Films) as nb_films FROM table_distributions WHERE lower(distribution) = '{$actor}'"
-          req="1"
-        />
-        <CodeDiplay
-          code="SELECT table_realisateurs.Réalisateur, table_films.Titre_Original, table_films.Année_Production FROM table_distributions INNER JOIN table_films on table_distributions.Id_Films = table_films.Id_Films INNER JOIN table_realisateurs on table_films.Id_Films = table_realisateurs.Id_Films WHERE lower(distribution) = '{$actor}' ORDER BY table_films.Durée DESC LIMIT 1"
-          req="2"
-        />
-        <Form onSubmit={handleSubmit}>
-          <Label htmlFor="actor">Entrez le nom d'un acteur</Label>
-          <Input
-            id="actor"
-            type="text"
-            value={actor}
-            onChange={(e) => setActor(e.target.value)}
-            required
-          />
-          <Submit type="submit" />
-        </Form>
+      <ExempleHeader>Exemple 4</ExempleHeader>
+      <HeaderContent>
+        Bienvenue sur l'exemple 4 <br /> <br /> Ici c'est a vous de jouez entrez
+        le prenom et npm d'un acteur et voyez la magie opérer !
+      </HeaderContent>
 
+      <ExempleContainer>
+        <Title>
+          Requete pour récupérer le nombre de films tournés par l'acteur
+        </Title>
+        <p>Code :</p>
+        <Code>
+          SELECT DISTINCT count(Id_Films) as nb_films FROM table_distributions
+          WHERE lower(distribution) = '$actor'
+        </Code>
+      </ExempleContainer>
+
+      <ExempleContainer>
+        <Title>
+          Requete pour récupérer le titre l'année et le réalisateur du plus long
+          film tourné par cet acteur
+        </Title>
+        <p>Code :</p>
+        <Code>
+          SELECT table_realisateurs.Réalisateur, table_films.Titre_Original,
+          table_films.Année_Production FROM table_distributions INNER JOIN
+          table_films on table_distributions.Id_Films = table_films.Id_Films
+          INNER JOIN table_realisateurs on table_films.Id_Films =
+          table_realisateurs.Id_Films WHERE lower(distribution) = '$actor' ORDER
+          BY table_films.Durée DESC LIMIT 1
+        </Code>
+      </ExempleContainer>
+
+      <Form onSubmit={handleSubmit}>
+        <Label htmlFor="actor">Entrez le prenom et nom d'un acteur</Label>
+        <Input
+          id="actor"
+          type="text"
+          value={actor}
+          onChange={(e) => setActor(e.target.value)}
+          required
+        />
+        <Submit type="submit" value="Chercher" />
+      </Form>
+
+      <ExempleContainer>
         {loading && (
           <TailSpin height="50" width="50" color="white" ariaLabel="loading" />
         )}
+        {error && <p>{error}</p>}
         {data && (
           <p>
             Nombre de film tourné par {actor} : {data.req1[0].nb_films}
@@ -135,11 +145,11 @@ export default function Exemple2() {
             en {data.req2[0].Année_Production}
           </p>
         )}
-      </DataShow>
+      </ExempleContainer>
 
-      <Control>
+      <Container>
         <Previous previousPage="/exemple/3" />
-      </Control>
+      </Container>
     </>
   );
 }

@@ -10,9 +10,23 @@ const Control = styled.div`
   margin: 0 1rem;
 
   &:hover {
+    cursor: pointer;
     filter: brightness(0.9);
   }
 `;
+
+const ConatainerControl = styled.div`
+  width: max-content;
+  height: max-content;
+  margin: 3rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export function Container({ children }) {
+  return <ConatainerControl>{children}</ConatainerControl>;
+}
 
 export function Next({ nextPage }) {
   return (

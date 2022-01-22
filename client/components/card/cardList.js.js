@@ -4,6 +4,7 @@ const CardListStyles = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   margin: 2rem 0;
 `;
 
