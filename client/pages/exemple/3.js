@@ -26,7 +26,7 @@ export default function Exemple3({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer le réalisateur ayant rapporté le plus d'argent
+          Requête pour récupérer le réalisateur ayant rapporté le plus d'argent
           sur un film
         </Title>
         <p>Code :</p>
@@ -47,7 +47,7 @@ export default function Exemple3({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer les films ayant "Bruce Willis" comme acteur
+          Requête pour récupérer les films ayant "Bruce Willis" comme acteur
         </Title>
         <p>Code :</p>
         <Code>
@@ -69,7 +69,7 @@ export default function Exemple3({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer les films ayant "Luc Besson" comme réalisateur
+          Requête pour récupérer les films ayant "Luc Besson" comme réalisateur
           et dont la durée est supérieur à 2H
         </Title>
         <p>Code :</p>
@@ -93,7 +93,7 @@ export default function Exemple3({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer les films faisant partie de la catégorie
+          Requête pour récupérer les films faisant partie de la catégorie
           "Comedy" où jouent l'actrice "Cameron Diaz" et tournés après le film
           "Shrek" dont elle prête sa voix
         </Title>

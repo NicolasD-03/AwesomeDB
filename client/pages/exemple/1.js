@@ -21,12 +21,12 @@ export default function Exemples({ data }) {
       </Head>
       <ExempleHeader>Exemple 1</ExempleHeader>
       <HeaderContent>
-        Bienvenue sur l'exemple 1 <br /> Ici vous retrouverez des reqête basique
-        !
+        Bienvenue sur l'exemple 1 <br /> Ici vous retrouverez des reqêtes
+        basiques !
       </HeaderContent>
 
       <ExempleContainer>
-        <Title>Requete pour récupérer les films commencent par "The"</Title>
+        <Title>Requête pour récupérer les films commençant par "The"</Title>
         <p>Code :</p>
         <Code>
           SELECT Titre_Original FROM table_films WHERE Titre_Original LIKE
@@ -46,7 +46,7 @@ export default function Exemples({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer tous les acteurs commencent par "Bruce"
+          Requête pour récupérer tous les acteurs commençant par "Bruce"
         </Title>
         <p>Code :</p>
         <Code>
@@ -67,8 +67,8 @@ export default function Exemples({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer les titres et langues des films qui sont du
-          genre "Action" et qui n'ont pas été tourné dans la langue anglaise
+          Requête pour récupérer les titres et langues des films qui sont du
+          genre "Action" et qui n'ont pas étés tournés dans la langue anglaise
         </Title>
         <p>Code :</p>
         <Code>
@@ -97,7 +97,8 @@ export default function Exemples({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer les titres et genres des films qui n'ont pas de
+          Requête pour récupérer les titres et genres des films qui n'ont pas de
+          durée
         </Title>
         <p>Code :</p>
         <Code>{req4}</Code>

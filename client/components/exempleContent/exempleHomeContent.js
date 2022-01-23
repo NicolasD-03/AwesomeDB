@@ -25,10 +25,10 @@ export default function ExempleHomeContent() {
       <Content>
         Voici les différents exemples et ce que vous pourrez y retrouver :
         <ul>
-          <li>Exemple 1 : Des requêtes basique sur une seule table </li>
+          <li>Exemple 1 : Des requêtes basiques sur une seule table </li>
           <li>
-            Exemple 2 : Des requêtes avec des opérations toujour sur une seule
-            table{" "}
+            Exemple 2 : Des requêtes avec des opérations toujours sur une seule
+            table
           </li>
           <li>Exemple 4 : Des requêtes complexes sur plusieurs tables </li>
           <li>

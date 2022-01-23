@@ -26,7 +26,7 @@ export default function Exemple2({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer le nombre de Réalisateurs différents
+          Requête pour récupérer le nombre de Réalisateurs différents
         </Title>
         <p>Code :</p>
         <Code>
@@ -42,8 +42,8 @@ export default function Exemple2({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer les titres des films tournés en japonais dans
-          l'ordre croissant de leur durée
+          Requête pour récupérer les titres des films tournés en japonais dans
+          l'ordre croissant de leurs durées
         </Title>
         <p>Code :</p>
         <Code>
@@ -64,7 +64,7 @@ export default function Exemple2({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer les titres des films les plus anciens
+          Requête pour récupérer les titres des films les plus anciens
         </Title>
         <p>Code :</p>
         <Code>
@@ -85,7 +85,7 @@ export default function Exemple2({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer le revenu moyen des films de genre thriller
+          Requête pour récupérer le revenu moyen des films de genre thriller
         </Title>
         <p>Code :</p>
         <Code>
@@ -105,7 +105,7 @@ export default function Exemple2({ data }) {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer les titres des films d'horreur dont le revenu
+          Requête pour récupérer les titres des films d'horreurs dont le revenu
           est supérieur au revenu moyen des films de la base
         </Title>
         <p>Code :</p>

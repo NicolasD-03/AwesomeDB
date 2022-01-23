@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { TailSpin } from "react-loader-spinner";
 import { Next, Previous, Container } from "../../components/exempleControl";
@@ -56,23 +56,26 @@ const Input = styled.input`
 `;
 
 export default function Exemple2() {
-  const [actor, setActor] = useState("");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const actorNameRef = useRef(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (actor) {
+    if (actorNameRef !== null && actorNameRef.current.value) {
       setData(null);
       setLoading(true);
-      const res = await fetch(`${process.env.API_ADDRESS}/4?actor=${actor}`);
+      const res = await fetch(
+        `${process.env.API_ADDRESS}/4?actor=${actorNameRef.current.value}`
+      );
       if (!res.ok) {
         setError("Désolé nous ne pouvons pas traiter votre requête");
         setLoading(false);
         return;
       }
       setData(await res.json());
+
       setLoading(false);
     }
   };
@@ -85,13 +88,13 @@ export default function Exemple2() {
 
       <ExempleHeader>Exemple 4</ExempleHeader>
       <HeaderContent>
-        Bienvenue sur l'exemple 4 <br /> <br /> Ici c'est a vous de jouez entrez
-        le prenom et npm d'un acteur et voyez la magie opérer !
+        Bienvenue sur l'exemple 4 <br /> <br /> Ici c'est à vous de jouer,
+        entrez le prenom et nom d'un acteur et voyez la magie opérer !
       </HeaderContent>
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer le nombre de films tournés par l'acteur
+          Requête pour récupérer le nombre de films tournés par l'acteur
         </Title>
         <p>Code :</p>
         <Code>
@@ -102,7 +105,7 @@ export default function Exemple2() {
 
       <ExempleContainer>
         <Title>
-          Requete pour récupérer le titre l'année et le réalisateur du plus long
+          Requête pour récupérer le titre l'année et le réalisateur du plus long
           film tourné par cet acteur
         </Title>
         <p>Code :</p>
@@ -117,14 +120,8 @@ export default function Exemple2() {
       </ExempleContainer>
 
       <Form onSubmit={handleSubmit}>
-        <Label htmlFor="actor">Entrez le prenom et nom d'un acteur</Label>
-        <Input
-          id="actor"
-          type="text"
-          value={actor}
-          onChange={(e) => setActor(e.target.value)}
-          required
-        />
+        <Label htmlFor="actor">Entrez le prénom et nom d'un acteur</Label>
+        <Input id="actor" type="text" ref={actorNameRef} required />
         <Submit type="submit" value="Chercher" />
       </Form>
 
@@ -135,14 +132,15 @@ export default function Exemple2() {
         {error && <p>{error}</p>}
         {data && (
           <p>
-            Nombre de film tourné par {actor} : {data.req1[0].nb_films}
+            Nombre de film tourné(e) par {actorNameRef.current.value} :{" "}
+            {data.req1[0].nb_films}
           </p>
         )}
         {data && data.req1[0].nb_films > 0 && (
           <p>
-            Le film le plus long joué par {actor} est{" "}
-            {data.req2[0].Titre_Original} réalisé par {data.req2[0].Réalisateur}{" "}
-            en {data.req2[0].Année_Production}
+            Le film le plus long joué(e) par {actorNameRef.current.value} est
+            {data.req2[0].Titre_Original} réalisé(e) par
+            {data.req2[0].Réalisateur} en {data.req2[0].Année_Production}
           </p>
         )}
       </ExempleContainer>
