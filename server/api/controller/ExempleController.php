@@ -52,9 +52,10 @@ class ExempleController
 
         //Transform string to lowercase to simplify requests
         $actor = strtolower($_GET['actor']);
+        $actorSanitize = htmlspecialchars($actor);
 
-        $req1 = $this->_db->request("SELECT DISTINCT count(Id_Films) as nb_films FROM table_distributions WHERE lower(distribution) = '{$actor}'");
-        $req2 = $this->_db->request("SELECT table_realisateurs.Réalisateur, table_films.Titre_Original, table_films.Année_Production FROM table_distributions INNER JOIN table_films on table_distributions.Id_Films = table_films.Id_Films INNER JOIN table_realisateurs on table_films.Id_Films = table_realisateurs.Id_Films WHERE lower(distribution) = '{$actor}' ORDER BY table_films.Durée DESC LIMIT 1");
+        $req1 = $this->_db->request("SELECT DISTINCT count(Id_Films) as nb_films FROM table_distributions WHERE lower(distribution) = '{$actorSanitize}'");
+        $req2 = $this->_db->request("SELECT table_realisateurs.Réalisateur, table_films.Titre_Original, table_films.Année_Production FROM table_distributions INNER JOIN table_films on table_distributions.Id_Films = table_films.Id_Films INNER JOIN table_realisateurs on table_films.Id_Films = table_realisateurs.Id_Films WHERE lower(distribution) = '{$actorSanitize}' ORDER BY table_films.Durée DESC LIMIT 1");
 
         echo json_encode(["req1" => $req1, "req2" => $req2]);
     }

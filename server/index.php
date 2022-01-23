@@ -9,7 +9,8 @@ require 'utils/config.php';
 
 // Set requests return to json only
 header('content-type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . $clientDomain);
+header('Vary: Origin');
 
 // Verify db connection
 try {
